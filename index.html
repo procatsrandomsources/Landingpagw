@@ -206,7 +206,7 @@ const SINGLES = [
 {
 id: "loose-goose", title: "Loose Goose", artist: "Procat", type: "single",
 cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931509836714055/Untitled51_1.png?ex=6a42fd59&is=6a41abd9&hm=1f23100f50e2dbd130054b233f8c2ac421fe591f13782bbad6b78526ad45f7ec&",
-audioUrl: "https://cdn.discordapp.com/attachments/1284984646043439135/123456789/Loose_Goose.mp3?ex=...", 
+audioUrl: "music/Loose Goose site edition.mp3", 
 links: {
 youtube: "https://youtu.be/psbHgf7La8c", ytMusic: "https://music.youtube.com/watch?v=sHOvGLrLOIo",
 spotify: "https://open.spotify.com/track/52iLBukJOGedF42jqWdhEp?si=_0MwzaBcQey3rNM28K_4Hg", apple: "https://music.apple.com/ca/album/loose-goose/6764423718",
@@ -216,7 +216,7 @@ soundcloud: "pending"
 {
 id: "its-deja-vu", title: "Its Deja Vu", artist: "Procat", type: "single",
 cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931509245182183/itsdejavu.jpg?ex=6a42fd59&is=6a41abd9&hm=fdb03837ef9f3a62298d95463b2b6ca2d71b779f48e07c47dd8942166e2b8104&",
-audioUrl: "https://cdn.discordapp.com/attachments/1284984646043439135/123456789/Its_Deja_Vu.mp3?ex=...", 
+audioUrl: "music/Its Deja Vu site edition.mp3", 
 links: {
 youtube: "https://youtu.be/ELkEsouGNG0", ytMusic: "https://music.youtube.com/playlist?list=OLAK5uy_kAT0C2x9jIn2-N80Oo8_LWyjdI2aUP2qM",
 spotify: "https://open.spotify.com/track/76AZsdrHLCw6VmgsbvxYMM?si=Kclsi0TGRy6O6uwxWQN2Yw", apple: "https://music.apple.com/ca/album/its-deja-vu/6784333492",
@@ -239,7 +239,7 @@ const ALBUMS = [
 {
 id: "broken-tapes", title: "Broken Tapes", artist: "Procat", type: "album", earlyAccess: true,
 cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510125985792/Untitled97.png?ex=6a42fd59&is=6a41abd9&hm=775267e46e8198b1d8df986be48e94c161c61bfc665234a8058f173ac63d48ce&",
-links: { youtube: "pending", ytMusic: "pending", spotify: "pending", apple: "pending", soundcloud: "pending" }, // Added links for Albums
+links: { youtube: "pending", ytMusic: "pending", spotify: "pending", apple: "pending", soundcloud: "pending" }, 
 tracks: [
 { title: "Flakes Poem", audioUrl: "music/Flakes peom site edition.m4a" },
 { title: "till dawn", audioUrl: "music/till dawn site edition.mp3" },
@@ -249,7 +249,7 @@ tracks: [
 {
 id: "aware", title: "A.W.A.R.E", artist: "Procat", type: "album", earlyAccess: true,
 cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931847905743059/Untitled3_20260611205927.jpg?ex=6a42fdaa&is=6a41ac2a&hm=12773dca80e9253fdfd37e93fcff168a4cf50808cee9f4a36d18cc24bdf8b6eb&",
-links: { youtube: "pending", ytMusic: "pending", spotify: "pending", apple: "pending", soundcloud: "pending" }, // Added links for Albums
+links: { youtube: "pending", ytMusic: "pending", spotify: "pending", apple: "pending", soundcloud: "pending" }, 
 tracks: [
 { title: "Usin' Me", audioUrl: "music/Usin' Me site edition.mp3" },
 { title: "wish i could leave", audioUrl: "music/wish i could leave site edition.mp3" }
@@ -298,6 +298,20 @@ audioPlayer.addEventListener('play', () => {
 audioPlayer.addEventListener('pause', () => {
     document.getElementById('play-icon').classList.remove('hidden');
     document.getElementById('pause-icon').classList.add('hidden');
+});
+
+// Added Error Listener
+audioPlayer.addEventListener('error', (e) => { 
+    console.error("Audio Load Error:", e); 
+    resetPlayerState(); 
+    const titleEl = document.getElementById('player-title'); 
+    const old = titleEl.textContent; 
+    titleEl.textContent = "Error: File Not Found"; 
+    titleEl.classList.add("text-red-400");
+    setTimeout(() => { 
+        titleEl.textContent = old; 
+        titleEl.classList.remove("text-red-400");
+    }, 4000); 
 });
 
 function resetPlayerState() {
@@ -483,11 +497,11 @@ function openModal(item) {
 }
 
 function loadAudioFile(url) {
-    if(url) {
-        // Use the exact URL (Discord URLs have complex parameters that don't need encoding)
-        audioPlayer.src = url;
+    if (url && url !== 'pending') {
+        // encodeURI fixes spaces in local filenames (e.g. "music/Loose Goose.mp3" becomes "music/Loose%20Goose.mp3")
+        audioPlayer.src = encodeURI(url);
         audioPlayer.load();
-        audioPlayer.play().catch(e => console.log("Waiting for user interaction to play audio."));
+        audioPlayer.play().catch(e => console.log("Waiting for user interaction to play audio.", e));
     }
 }
 
@@ -528,9 +542,16 @@ window.selectTrack = function(index) {
 function closeModal() {
     modal.classList.add('opacity-0', 'pointer-events-none');
     document.body.style.overflow = 'auto';
+    
+    // Safely stop and clear the audio
     audioPlayer.pause();
-    audioPlayer.removeAttribute('src'); // Fixes the NotSupportedError
-    audioPlayer.load();
+    
+    // Instead of setting src to an empty string which can throw errors,
+    // we simply clear the src and call load() to reset the internal state
+    audioPlayer.src = "";
+    audioPlayer.load(); 
+    
+    resetPlayerState();
 }
 
 document.getElementById('close-modal').addEventListener('click', closeModal);
