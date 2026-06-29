@@ -3,19 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HS Music</title>
+<title>Procat / HS Music</title>
+<!-- Added the HS Logo as the Favicon -->
 <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-body { background-color: #09090b; color: white; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-.glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-.ambient-glow-1 { position: fixed; top: -10%; left: -10%; width: 40%; height: 40%; background: rgba(112, 26, 117, 0.2); filter: blur(120px); border-radius: 50%; mix-blend-mode: screen; pointer-events: none; z-index: 0; }
-.ambient-glow-2 { position: fixed; bottom: -10%; right: -10%; width: 40%; height: 40%; background: rgba(49, 46, 129, 0.2); filter: blur(120px); border-radius: 50%; mix-blend-mode: screen; pointer-events: none; z-index: 0; }
+/* Custom styles and animations */
+body {
+background-color: #09090b;
+color: white;
+font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.glass-panel {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.ambient-glow-1 {
+position: fixed; top: -10%; left: -10%; width: 40%; height: 40%;
+background: rgba(112, 26, 117, 0.2); filter: blur(120px);
+border-radius: 50%; mix-blend-mode: screen; pointer-events: none; z-index: 0;
+}
+.ambient-glow-2 {
+position: fixed; bottom: -10%; right: -10%; width: 40%; height: 40%;
+background: rgba(49, 46, 129, 0.2); filter: blur(120px);
+border-radius: 50%; mix-blend-mode: screen; pointer-events: none; z-index: 0;
+}
+
+/* Scrollbar styling */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* Progress bar transition */
 #progress-bar { transition: width 0.1s linear; }
 </style>
 </head>
@@ -27,7 +51,8 @@ body { background-color: #09090b; color: white; font-family: ui-sans-serif, syst
 <div class="relative z-10 flex flex-col min-h-screen">
 <nav class="sticky top-0 z-30 glass-panel px-6 py-4 flex items-center justify-between">
 <div class="flex items-center gap-3">
-<img src="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&" alt="HS Logo" class="w-10 h-10 rounded-xl object-cover shadow-lg">
+<img src="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&"
+alt="HS Logo" class="w-10 h-10 rounded-xl object-cover shadow-lg">
 <div class="flex flex-col">
 <span class="text-sm font-extrabold uppercase tracking-widest text-zinc-100 leading-tight">Procat</span>
 <span class="text-xs text-fuchsia-400 font-medium uppercase tracking-widest leading-tight">HS Music</span>
@@ -40,19 +65,33 @@ body { background-color: #09090b; color: white; font-family: ui-sans-serif, syst
 </nav>
 
 <header class="px-6 py-16 md:py-24 max-w-7xl mx-auto w-full flex flex-col items-center text-center">
-<h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-500 drop-shadow-sm">The Sound of <br class="md:hidden" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-indigo-500">Procat</span></h1>
-<p class="text-lg md:text-xl text-zinc-400 max-w-2xl font-medium">Explore the latest singles, dive into early access albums, and preview tracks directly. Published by HS Music.</p>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-500 drop-shadow-sm">
+The Sound of <br class="md:hidden" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-indigo-500">Procat</span>
+</h1>
+<p class="text-lg md:text-xl text-zinc-400 max-w-2xl font-medium">
+Explore the latest singles, dive into early access albums, and preview tracks directly. Published by HS Music.
+</p>
 </header>
 
 <main class="flex-grow w-full max-w-7xl mx-auto px-6 pb-24 space-y-16">
 <section>
-<div class="flex items-center mb-8 gap-3"><span class="w-2 h-8 bg-fuchsia-500 rounded-full inline-block"></span><h2 class="text-2xl md:text-3xl font-bold">Latest Singles</h2></div>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8" id="singles-grid"></div>
+<div class="flex items-center mb-8 gap-3">
+<span class="w-2 h-8 bg-fuchsia-500 rounded-full inline-block"></span>
+<h2 class="text-2xl md:text-3xl font-bold">Latest Singles</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8" id="singles-grid">
+</div>
 </section>
+
 <section>
-<div class="flex items-center mb-8 gap-3"><span class="w-2 h-8 bg-indigo-500 rounded-full inline-block"></span><h2 class="text-2xl md:text-3xl font-bold">Albums & EPs</h2></div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="albums-grid"></div>
+<div class="flex items-center mb-8 gap-3">
+<span class="w-2 h-8 bg-indigo-500 rounded-full inline-block"></span>
+<h2 class="text-2xl md:text-3xl font-bold">Albums & EPs</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="albums-grid">
+</div>
 </section>
+
 </main>
 
 <footer class="mt-auto border-t border-white/5 py-8 text-center text-zinc-500 text-sm font-medium bg-black/20">
@@ -60,250 +99,444 @@ body { background-color: #09090b; color: white; font-family: ui-sans-serif, syst
 </footer>
 </div>
 
+<!-- Modal Container -->
 <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12 opacity-0 pointer-events-none transition-opacity duration-300">
 <div id="modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-md cursor-pointer"></div>
+
 <div class="relative z-10 w-full max-w-5xl bg-zinc-950/90 border border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[85vh]">
-<button id="close-modal" class="absolute top-4 right-4 z-20 p-2 bg-black/40 hover:bg-white/20 text-white rounded-full backdrop-blur-md transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+<!-- z-50 ensures the button stays clickable above the panels -->
+<button id="close-modal" class="absolute top-4 right-4 z-50 p-2 bg-black/40 hover:bg-white/20 text-white rounded-full backdrop-blur-md transition-colors shadow-lg">
+<i data-lucide="x" class="w-5 h-5"></i>
+</button>
+
+<!-- Modal Left: Info & Cover -->
 <div class="w-full md:w-2/5 p-6 md:p-8 flex flex-col items-center justify-center bg-gradient-to-b from-white/5 to-transparent border-b md:border-b-0 md:border-r border-white/5 overflow-y-auto shrink-0 relative">
 <div class="relative w-48 h-48 sm:w-64 sm:h-64 md:w-full md:aspect-square mb-6">
 <img id="modal-cover" src="" alt="Cover" class="w-full h-full object-cover rounded-2xl shadow-2xl ring-1 ring-white/10">
-<div id="modal-badge" class="hidden absolute top-3 left-3 bg-fuchsia-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg">Early Access</div>
+<div id="modal-badge" class="hidden absolute top-3 left-3 bg-fuchsia-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
+Early Access
+</div>
 </div>
 <h2 id="modal-title" class="text-2xl md:text-3xl font-extrabold text-white text-center mb-1 tracking-tight">Title</h2>
-<p id="modal-artist" class="text-zinc-400 font-medium tracking-wide mb-2 flex items-center justify-center gap-2"><img src="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&" class="w-4 h-4 rounded-sm" alt="HS Logo"> <span id="modal-artist-text">Procat</span></p>
-<div id="modal-platforms" class="flex flex-wrap items-center justify-center gap-4 mt-6 p-4 bg-white/5 rounded-2xl border border-white/10 hidden"></div>
+<p id="modal-artist" class="text-zinc-400 font-medium tracking-wide mb-2 flex items-center justify-center gap-2">
+<img src="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&" class="w-4 h-4 rounded-sm" alt="HS Logo"> 
+<span id="modal-artist-text">Procat</span>
+</p>
+
+<!-- Platform links now displayed for both singles and albums -->
+<div id="modal-platforms" class="flex flex-wrap items-center justify-center gap-4 mt-6 p-4 bg-white/5 rounded-2xl border border-white/10 hidden">
+</div>
 </div>
 
+<!-- Modal Right: Player & Tracklist -->
 <div class="w-full md:w-3/5 flex flex-col bg-black/60 relative overflow-hidden">
-<div class="w-full p-6 md:p-8 bg-zinc-900/90 border-b border-white/5 flex flex-col gap-4 shadow-2xl shrink-0 z-20">
-<div class="text-center mb-1"><h3 id="player-title" class="text-lg md:text-xl font-bold text-white tracking-tight truncate">Track Title</h3><p id="player-artist" class="text-xs md:text-sm text-fuchsia-400 font-medium">Procat</p></div>
-<div class="flex items-center justify-center gap-6 md:gap-8">
-<button id="rewind-btn" class="p-2 text-zinc-400 hover:text-white transition" title="Rewind"><i data-lucide="rotate-ccw" class="w-5 h-5 md:w-6 md:h-6"></i></button>
-<button id="play-pause-btn" class="w-14 h-14 md:w-16 md:h-16 bg-white hover:bg-fuchsia-500 text-black hover:text-white rounded-full flex items-center justify-center transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transform hover:scale-105">
-<div id="play-icon" class="block ml-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 md:w-8 md:h-8"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></div>
-<div id="pause-icon" class="hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 md:w-8 md:h-8"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg></div>
-</button>
-<button id="loop-btn" class="p-2 text-zinc-400 hover:text-white transition" title="Toggle Loop"><i data-lucide="repeat" class="w-5 h-5 md:w-6 md:h-6"></i></button>
+    
+    <!-- Custom Audio Player UI -->
+    <div class="w-full p-6 md:p-8 bg-zinc-900/90 border-b border-white/5 flex flex-col gap-4 shadow-2xl shrink-0 z-20">
+        <div class="text-center mb-1">
+            <h3 id="player-title" class="text-lg md:text-xl font-bold text-white tracking-tight truncate">Track Title</h3>
+            <p id="player-artist" class="text-xs md:text-sm text-fuchsia-400 font-medium">Procat</p>
+        </div>
+
+        <div class="flex items-center justify-center gap-6 md:gap-8">
+            <button id="rewind-btn" class="p-2 text-zinc-400 hover:text-white transition" title="Rewind">
+                <i data-lucide="rotate-ccw" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </button>
+            
+            <button id="play-pause-btn" class="w-14 h-14 md:w-16 md:h-16 bg-white hover:bg-fuchsia-500 text-black hover:text-white rounded-full flex items-center justify-center transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(217,70,239,0.5)] transform hover:scale-105">
+                <div id="play-icon" class="block ml-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 md:w-8 md:h-8"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                </div>
+                <div id="pause-icon" class="hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 md:w-8 md:h-8"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                </div>
+            </button>
+
+            <button id="loop-btn" class="p-2 text-zinc-400 hover:text-white transition" title="Toggle Loop">
+                <i data-lucide="repeat" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </button>
+        </div>
+
+        <div class="flex items-center gap-3 text-xs text-zinc-400 font-medium w-full mt-2">
+            <span id="current-time" class="w-10 text-right">0:00</span>
+            <div id="progress-container" class="flex-grow h-1.5 bg-white/10 rounded-full cursor-pointer relative overflow-hidden group">
+                <div id="progress-bar" class="absolute top-0 left-0 h-full bg-gradient-to-r from-fuchsia-500 to-indigo-500 rounded-full w-0"></div>
+                <!-- Hover effect area -->
+                <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <span id="total-time" class="w-10 text-left">0:00</span>
+        </div>
+    </div>
+
+    <!-- Album Tracklist -->
+    <div id="modal-tracklist-container" class="p-6 md:p-8 flex-grow hidden overflow-y-auto">
+        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+        <i data-lucide="list-music" class="w-5 h-5 text-fuchsia-400"></i> Tracklist
+        </h3>
+        <div id="modal-tracklist" class="space-y-2">
+        </div>
+    </div>
+
+    <!-- Single Track Info -->
+    <div id="modal-single-info" class="p-6 md:p-8 flex-grow flex flex-col justify-center items-center text-center opacity-60 hidden overflow-y-auto">
+        <img src="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&" class="w-10 h-10 mb-4 opacity-50 rounded-lg grayscale">
+        <h4 class="text-lg font-bold text-white mb-2">Single Release</h4>
+        <p class="text-sm max-w-xs">You are previewing this track directly in the HS Music player. <br/><br/>Use the platform links on the left to add this track to your library.</p>
+    </div>
+
 </div>
-<div class="flex items-center gap-3 text-xs text-zinc-400 font-medium w-full mt-2">
-<span id="current-time" class="w-10 text-right">0:00</span>
-<div id="progress-container" class="flex-grow h-1.5 bg-white/10 rounded-full cursor-pointer relative overflow-hidden group"><div id="progress-bar" class="absolute top-0 left-0 h-full bg-gradient-to-r from-fuchsia-500 to-indigo-500 rounded-full w-0"></div></div>
-<span id="total-time" class="w-10 text-left">0:00</span>
-</div>
-</div>
-<div id="modal-tracklist-container" class="p-6 md:p-8 flex-grow hidden overflow-y-auto"><h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="list-music" class="w-5 h-5 text-fuchsia-400"></i> Tracklist</h3><div id="modal-tracklist" class="space-y-2"></div></div>
-<div id="modal-single-info" class="p-6 md:p-8 flex-grow flex flex-col justify-center items-center text-center opacity-60 hidden overflow-y-auto"><img src="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&" class="w-10 h-10 mb-4 opacity-50 rounded-lg grayscale"><h4 class="text-lg font-bold text-white mb-2">Single Release</h4><p class="text-sm max-w-xs">Previewing track in HS Music player. Use links on left to add to library.</p></div>
-</div>
+
 </div>
 </div>
 
 <script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// --- Data Structures ---
+const HS_LOGO = "https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&";
+const ICONS = {
+youtube: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931512139120781/Untitled110_20260628201401.png?ex=6a42fd5a&is=6a41abda&hm=8d75e50992cbd51b38a6954a95fad57cd6bf00b10f7fedd326e7259e7c49fe9c&",
+ytMusic: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931512592109598/Untitled110_20260628201356.png?ex=6a42fd5a&is=6a41abda&hm=7b8ae3c1f7795959a4121639c1d995bd21b745bb0a695c1e6f5550bdc5aa011f&",
+spotify: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931511577350286/Untitled110_20260628201410.png?ex=6a42fd59&is=6a41abd9&hm=4006fe2920abfd466d6788d5730459795931f8a37f91d0a4b78afb3838347047&",
+apple: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931511283482826/Untitled110_20260628201416.png?ex=6a42fd59&is=6a41abd9&hm=ccdef7863e70770ea59f0a77fd18aee697d49f54089d8ade5837f86882383cce&",
+soundcloud: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931511858233655/Untitled110_20260628201405.png?ex=6a42fd59&is=6a41abd9&hm=8f73258f96248ada8801d518fe45813d96a647b25f9ff651a2135235af0afb7c&"
+};
+
+const SINGLES = [
+{
+id: "loose-goose", title: "Loose Goose", artist: "Procat", type: "single",
+cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931509836714055/Untitled51_1.png?ex=6a42fd59&is=6a41abd9&hm=1f23100f50e2dbd130054b233f8c2ac421fe591f13782bbad6b78526ad45f7ec&",
+audioUrl: "https://cdn.discordapp.com/attachments/1284984646043439135/123456789/Loose_Goose.mp3?ex=...", 
+links: {
+youtube: "https://youtu.be/psbHgf7La8c", ytMusic: "https://music.youtube.com/watch?v=sHOvGLrLOIo",
+spotify: "https://open.spotify.com/track/52iLBukJOGedF42jqWdhEp?si=_0MwzaBcQey3rNM28K_4Hg", apple: "https://music.apple.com/ca/album/loose-goose/6764423718",
+soundcloud: "pending"
+}
+},
+{
+id: "its-deja-vu", title: "Its Deja Vu", artist: "Procat", type: "single",
+cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931509245182183/itsdejavu.jpg?ex=6a42fd59&is=6a41abd9&hm=fdb03837ef9f3a62298d95463b2b6ca2d71b779f48e07c47dd8942166e2b8104&",
+audioUrl: "https://cdn.discordapp.com/attachments/1284984646043439135/123456789/Its_Deja_Vu.mp3?ex=...", 
+links: {
+youtube: "https://youtu.be/ELkEsouGNG0", ytMusic: "https://music.youtube.com/playlist?list=OLAK5uy_kAT0C2x9jIn2-N80Oo8_LWyjdI2aUP2qM",
+spotify: "https://open.spotify.com/track/76AZsdrHLCw6VmgsbvxYMM?si=Kclsi0TGRy6O6uwxWQN2Yw", apple: "https://music.apple.com/ca/album/its-deja-vu/6784333492",
+soundcloud: "pending"
+}
+},
+{
+id: "flakes-endless-purgatory", title: "Flakes Endless Purgatory", artist: "Procat", type: "single",
+cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510948204744/Untitled95.png?ex=6a42fd59&is=6a41abd9&hm=4f863f048199f3c35955cfd356bf950ef8be8ccdb237f4aba28bfadbbc7fbfcd&",
+audioUrl: "music/Flakes Endless Purgatory site edition.mp3",
+links: {
+youtube: "https://youtu.be/PNs0v7HLo7c", ytMusic: "https://music.youtube.com/watch?v=AkuWVAttiQE",
+spotify: "pending", apple: "https://music.apple.com/ca/album/flakes-endless-purgatory/6780715465",
+soundcloud: "pending"
+}
+}
+];
+
+const ALBUMS = [
+{
+id: "broken-tapes", title: "Broken Tapes", artist: "Procat", type: "album", earlyAccess: true,
+cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510125985792/Untitled97.png?ex=6a42fd59&is=6a41abd9&hm=775267e46e8198b1d8df986be48e94c161c61bfc665234a8058f173ac63d48ce&",
+links: { youtube: "pending", ytMusic: "pending", spotify: "pending", apple: "pending", soundcloud: "pending" }, // Added links for Albums
+tracks: [
+{ title: "Flakes Poem", audioUrl: "music/Flakes peom site edition.m4a" },
+{ title: "till dawn", audioUrl: "music/till dawn site edition.mp3" },
+{ title: "broken tapes", audioUrl: "music/broken tapes site edition.mp3" }
+]
+},
+{
+id: "aware", title: "A.W.A.R.E", artist: "Procat", type: "album", earlyAccess: true,
+cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931847905743059/Untitled3_20260611205927.jpg?ex=6a42fdaa&is=6a41ac2a&hm=12773dca80e9253fdfd37e93fcff168a4cf50808cee9f4a36d18cc24bdf8b6eb&",
+links: { youtube: "pending", ytMusic: "pending", spotify: "pending", apple: "pending", soundcloud: "pending" }, // Added links for Albums
+tracks: [
+{ title: "Usin' Me", audioUrl: "music/Usin' Me site edition.mp3" },
+{ title: "wish i could leave", audioUrl: "music/wish i could leave site edition.mp3" }
+]
+}
+];
+
+
+// --- Audio Player Logic (HTML5 Audio) ---
+let currentMediaItem = null;
+let currentTrackIndex = 0;
+let isLooping = false;
+const audioPlayer = new Audio();
+
+audioPlayer.addEventListener('timeupdate', () => {
+    const current = audioPlayer.currentTime;
+    const duration = audioPlayer.duration;
+    if (duration > 0) {
+        const percent = (current / duration) * 100;
+        document.getElementById('progress-bar').style.width = `${percent}%`;
+        document.getElementById('current-time').textContent = formatTime(current);
+        document.getElementById('total-time').textContent = formatTime(duration);
+    }
+});
+
+audioPlayer.addEventListener('ended', () => {
+    if (isLooping) {
+        audioPlayer.currentTime = 0;
+        audioPlayer.play();
+    } else if (currentMediaItem && currentMediaItem.type === 'album') {
+        if (currentTrackIndex < currentMediaItem.tracks.length - 1) {
+            selectTrack(currentTrackIndex + 1);
+        } else {
+            resetPlayerState();
+        }
+    } else {
+        resetPlayerState();
+    }
+});
+
+audioPlayer.addEventListener('play', () => {
+    document.getElementById('play-icon').classList.add('hidden');
+    document.getElementById('pause-icon').classList.remove('hidden');
+});
+
+audioPlayer.addEventListener('pause', () => {
+    document.getElementById('play-icon').classList.remove('hidden');
+    document.getElementById('pause-icon').classList.add('hidden');
+});
+
+function resetPlayerState() {
+    document.getElementById('play-icon').classList.remove('hidden');
+    document.getElementById('pause-icon').classList.add('hidden');
+}
+
+// --- Player Controls ---
+function formatTime(seconds) {
+    if (isNaN(seconds)) return "0:00";
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+// Button Listeners
+document.getElementById('play-pause-btn').addEventListener('click', () => {
+    if (!audioPlayer.src) return;
+    if (audioPlayer.paused) audioPlayer.play();
+    else audioPlayer.pause();
+});
+
+document.getElementById('rewind-btn').addEventListener('click', () => {
+    if (audioPlayer.src) {
+        audioPlayer.currentTime = 0;
+        if (audioPlayer.paused) audioPlayer.play();
+    }
+});
+
+document.getElementById('loop-btn').addEventListener('click', () => {
+    isLooping = !isLooping;
+    const btn = document.getElementById('loop-btn');
+    if (isLooping) {
+        btn.classList.add('text-fuchsia-400');
+        btn.classList.remove('text-zinc-400');
+    } else {
+        btn.classList.remove('text-fuchsia-400');
+        btn.classList.add('text-zinc-400');
+    }
+});
+
+document.getElementById('progress-container').addEventListener('click', function(e) {
+    if(audioPlayer.duration) {
+        const rect = this.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        audioPlayer.currentTime = pos * audioPlayer.duration;
+    }
+});
+
+// --- Render UI ---
+const singlesGrid = document.getElementById('singles-grid');
+SINGLES.forEach(single => {
+const el = document.createElement('div');
+el.className = "group relative bg-white/5 border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:bg-white/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(217,70,239,0.15)] hover:-translate-y-1";
+el.onclick = () => openModal(single);
+el.innerHTML = `
+<div class="aspect-square relative overflow-hidden">
+<img src="${single.cover}" alt="${single.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="w-14 h-14 bg-fuchsia-600 text-white rounded-full flex items-center justify-center shadow-2xl transform scale-75 group-hover:scale-100 transition-transform duration-300">
+<i data-lucide="play" class="w-6 h-6 ml-1 text-white"></i>
+</div>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-lg truncate text-white group-hover:text-fuchsia-300 transition-colors">${single.title}</h3>
+<p class="text-sm text-zinc-400 font-medium mt-1">Single</p>
+</div>
+`;
+singlesGrid.appendChild(el);
+});
+
+const albumsGrid = document.getElementById('albums-grid');
+ALBUMS.forEach(album => {
+const el = document.createElement('div');
+el.className = "group relative bg-gradient-to-br from-white/5 to-white/0 border border-white/10 backdrop-blur-sm rounded-3xl p-4 sm:p-5 flex flex-col cursor-pointer hover:bg-white/10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] hover:-translate-y-1";
+el.onclick = () => openModal(album);
+el.innerHTML = `
+<div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 relative shadow-inner">
+<img src="${album.cover}" alt="${album.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+<div class="absolute top-3 left-3 bg-fuchsia-600/90 backdrop-blur text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg">Early Access</div>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="bg-white/20 backdrop-blur-md text-white px-5 py-3 rounded-full flex items-center gap-2 font-semibold transform scale-90 group-hover:scale-100 transition-transform duration-300 border border-white/30">
+View Tracks <i data-lucide="chevron-right" class="w-4 h-4 text-white"></i>
+</div>
+</div>
+</div>
+<div class="mt-auto px-2 pb-2">
+<h3 class="font-extrabold text-xl md:text-2xl text-white truncate group-hover:text-indigo-300 transition-colors">${album.title}</h3>
+<p class="text-sm text-zinc-400 font-medium mt-1 flex items-center gap-2">
+<img src="${HS_LOGO}" class="w-4 h-4 rounded-sm grayscale opacity-70"> ${album.tracks.length} Tracks
+</p>
+</div>
+`;
+albumsGrid.appendChild(el);
+});
+
+// --- Modal Logic ---
 const modal = document.getElementById('modal');
 const modalCover = document.getElementById('modal-cover');
 const modalTitle = document.getElementById('modal-title');
 const modalArtistText = document.getElementById('modal-artist-text');
 const modalBadge = document.getElementById('modal-badge');
+const platformsDiv = document.getElementById('modal-platforms');
 const tracklistContainer = document.getElementById('modal-tracklist-container');
 const singleInfo = document.getElementById('modal-single-info');
+const tracklistDiv = document.getElementById('modal-tracklist');
+
+// Player UI Elements
 const playerTitle = document.getElementById('player-title');
 const playerArtist = document.getElementById('player-artist');
-const modalTracklist = document.getElementById('modal-tracklist');
 
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// FIXED: Adjusted audioUrl filenames to perfectly match user-provided names (Case and Extensions)
-const SINGLES = [
-{ id: "loose-goose", title: "Loose Goose", artist: "Procat", type: "single", cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931509836714055/Untitled51_1.png?ex=6a42fd59&is=6a41abd9&hm=1f23100f50e2dbd130054b233f8c2ac421fe591f13782bbad6b78526ad45f7ec&", audioUrl: "music/Loose Goose site edition.mp3" },
-{ id: "its-deja-vu", title: "Its Deja Vu", artist: "Procat", type: "single", cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931509245182183/itsdejavu.jpg?ex=6a42fd59&is=6a41abd9&hm=fdb03837ef9f3a62298d95463b2b6ca2d71b779f48e07c47dd8942166e2b8104&", audioUrl: "music/Its Deja Vu site edition.mp3" },
-{ id: "flakes-endless-purgatory", title: "Flakes Endless Purgatory", artist: "Procat", type: "single", cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510948204744/Untitled95.png?ex=6a42fd59&is=6a41abd9&hm=4f863f048199f3c35955cfd356bf950ef8be8ccdb237f4aba28bfadbbc7fbfcd&", audioUrl: "music/Flakes Endless Purgatory site edition.mp3" } // Changed 'EndLess' to 'Endless'
-];
-
-// FIXED: "Flakes peom" changed extension to .m4a and corrected typo "peom"
-const ALBUMS = [
-{ id: "broken-tapes", title: "Broken Tapes", artist: "Procat", type: "album", earlyAccess: true, cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510125985792/Untitled97.png?ex=6a42fd59&is=6a41abd9&hm=775267e46e8198b1d8df986be48e94c161c61bfc665234a8058f173ac63d48ce&", 
-  tracks: [ 
-    { title: "Flakes Poem", audioUrl: "music/Flakes peom site edition.m4a" }, // Fixed '.mp3' to '.m4a', 'Poem' to 'peom'
-    { title: "till dawn", audioUrl: "music/till dawn site edition.mp3" }, 
-    { title: "broken tapes", audioUrl: "music/broken tapes site edition.mp3" } 
-  ] 
-},
-{ id: "aware", title: "A.W.A.R.E", artist: "Procat", type: "album", earlyAccess: true, cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931847905743059/Untitled3_20260611205927.jpg?ex=6a42fdaa&is=6a41ac2a&hm=12773dca80e9253fdfd37e93fcff168a4cf50808cee9f4a36d18cc24bdf8b6eb&", 
-  tracks: [ 
-    { title: "Usin' Me", audioUrl: "music/Usin' Me site edition.mp3" }, 
-    { title: "wish i could leave", audioUrl: "music/wish i could leave site edition.mp3" } 
-  ] 
+function resetPlayerUI() {
+    document.getElementById('progress-bar').style.width = '0%';
+    document.getElementById('current-time').textContent = '0:00';
+    document.getElementById('total-time').textContent = '0:00';
+    resetPlayerState();
 }
-];
 
-let currentMediaItem = null, currentTrackIndex = 0, isLooping = false;
-const audioPlayer = new Audio();
+function openModal(item) {
+    currentMediaItem = item;
+    currentTrackIndex = 0;
+    
+    // Left side UI Updates
+    modalCover.src = item.cover;
+    modalTitle.textContent = item.type === 'album' ? item.title : item.title;
+    modalArtistText.textContent = `${item.artist} ${item.type === 'album' ? '• Album' : '• Single'}`;
+    
+    if (item.earlyAccess) modalBadge.classList.remove('hidden');
+    else modalBadge.classList.add('hidden');
 
-audioPlayer.addEventListener('timeupdate', () => { 
-    const cur = audioPlayer.currentTime, dur = audioPlayer.duration; 
-    if(dur > 0) { 
-        document.getElementById('progress-bar').style.width = (cur/dur)*100 + '%'; 
-        document.getElementById('current-time').textContent = formatTime(cur); 
-        document.getElementById('total-time').textContent = formatTime(dur); 
-    } 
-});
+    resetPlayerUI();
 
-audioPlayer.addEventListener('ended', () => { 
-    if(isLooping) { 
-        audioPlayer.currentTime=0; 
-        audioPlayer.play(); 
-    } else if(currentMediaItem?.type === 'album' && currentTrackIndex < currentMediaItem.tracks.length - 1) {
-        selectTrack(currentTrackIndex + 1); 
+    // Render Platform Icons for BOTH Singles and Albums
+    if (item.links) {
+        platformsDiv.classList.remove('hidden');
+        const platforms = [
+            { key: 'youtube', name: 'YouTube', icon: ICONS.youtube },
+            { key: 'ytMusic', name: 'YT Music', icon: ICONS.ytMusic },
+            { key: 'spotify', name: 'Spotify', icon: ICONS.spotify },
+            { key: 'apple', name: 'Apple Music', icon: ICONS.apple },
+            { key: 'soundcloud', name: 'SoundCloud', icon: ICONS.soundcloud },
+        ];
+        platformsDiv.innerHTML = platforms.map(p => {
+            const url = item.links[p.key];
+            const isPending = !url || url === 'pending';
+            return `
+            <div class="relative group flex flex-col items-center">
+            <a href="${isPending ? '#' : url}" ${isPending ? '' : 'target="_blank"'}
+            class="transition-all duration-300 block ${isPending ? 'opacity-30 grayscale cursor-not-allowed' : 'hover:scale-110 hover:-translate-y-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]'}">
+            <img src="${p.icon}" alt="${p.name}" class="w-10 h-10 md:w-12 md:h-12 object-contain" />
+            </a>
+            <div class="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity text-xs bg-black/80 px-2 py-1 rounded whitespace-nowrap pointer-events-none z-10">
+            ${isPending ? 'Pending Release' : `Listen on ${p.name}`}
+            </div>
+            </div>
+            `;
+        }).join('');
     } else {
-        resetPlayerState(); 
+        platformsDiv.classList.add('hidden');
     }
-});
 
-audioPlayer.addEventListener('play', () => { 
-    document.getElementById('play-icon').classList.add('hidden'); 
-    document.getElementById('pause-icon').classList.remove('hidden'); 
-});
+    if (item.type === 'single') {
+        // Handle Single View
+        tracklistContainer.classList.add('hidden');
+        singleInfo.classList.remove('hidden');
+        
+        // Setup Player for Single
+        playerTitle.textContent = item.title;
+        playerArtist.textContent = item.artist;
+        
+        loadAudioFile(item.audioUrl);
+    } else {
+        // Handle Album View
+        singleInfo.classList.add('hidden');
+        tracklistContainer.classList.remove('hidden');
+        selectTrack(0); // This sets up player UI and loads the first track
+    }
 
-audioPlayer.addEventListener('pause', () => { 
-    document.getElementById('play-icon').classList.remove('hidden'); 
-    document.getElementById('pause-icon').classList.add('hidden'); 
-});
-
-audioPlayer.addEventListener('error', (e) => { 
-    console.error("Audio Load Error:", e); 
-    resetPlayerState(); 
-    const titleEl = document.getElementById('player-title'); 
-    const old = titleEl.textContent; 
-    // ADDED: Better visual error indicator for missing files
-    titleEl.textContent = "Error: File Not Found"; 
-    titleEl.classList.add("text-red-400");
-    setTimeout(() => { 
-        titleEl.textContent = old; 
-        titleEl.classList.remove("text-red-400");
-    }, 4000); 
-});
-
-function resetPlayerState() { 
-    document.getElementById('play-icon').classList.remove('hidden'); 
-    document.getElementById('pause-icon').classList.add('hidden'); 
+    // Show Modal
+    document.body.style.overflow = 'hidden';
+    modal.classList.remove('opacity-0', 'pointer-events-none');
 }
 
-function resetPlayerUI() { 
-    document.getElementById('progress-bar').style.width = '0%'; 
-    document.getElementById('current-time').textContent = '0:00'; 
-    document.getElementById('total-time').textContent = '0:00'; 
-}
-
-function formatTime(s) { 
-    if(isNaN(s)) return "0:00"; 
-    const m = Math.floor(s/60), sec = Math.floor(s%60); 
-    return `${m}:${sec<10?'0':''}${sec}`; 
-}
-
-document.getElementById('play-pause-btn').addEventListener('click', () => { 
-    if(audioPlayer.src) audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause(); 
-});
-document.getElementById('rewind-btn').addEventListener('click', () => { 
-    if(audioPlayer.src) { audioPlayer.currentTime=0; if(audioPlayer.paused) audioPlayer.play(); } 
-});
-document.getElementById('loop-btn').addEventListener('click', function() { 
-    isLooping=!isLooping; 
-    this.classList.toggle('text-fuchsia-400'); 
-    this.classList.toggle('text-zinc-400'); 
-});
-document.getElementById('progress-container').addEventListener('click', function(e) { 
-    if(audioPlayer.duration) audioPlayer.currentTime = ((e.clientX - this.getBoundingClientRect().left)/this.offsetWidth) * audioPlayer.duration; 
-});
-
-SINGLES.forEach(s => { 
-    const el = document.createElement('div'); 
-    el.className = "group relative bg-white/5 border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:bg-white/10 transition-all"; 
-    el.onclick = () => openModal(s); 
-    el.innerHTML = `<div class="aspect-square relative"><img src="${s.cover}" class="w-full h-full object-cover"></div><div class="p-4"><h3 class="font-bold text-white">${s.title}</h3><p class="text-sm text-zinc-400">Single</p></div>`; 
-    document.getElementById('singles-grid').appendChild(el); 
-});
-
-ALBUMS.forEach(a => { 
-    const el = document.createElement('div'); 
-    el.className = "group relative bg-white/5 border border-white/5 rounded-3xl p-4 cursor-pointer hover:bg-white/10 transition-all"; 
-    el.onclick = () => openModal(a); 
-    el.innerHTML = `<div class="aspect-square rounded-2xl overflow-hidden mb-4"><img src="${a.cover}" class="w-full h-full object-cover"></div><div class="px-2"><h3 class="font-bold text-xl">${a.title}</h3><p class="text-sm text-zinc-400">${a.tracks.length} Tracks</p></div>`; 
-    document.getElementById('albums-grid').appendChild(el); 
-});
-
-function updateTracklistUI() {
-    if(currentMediaItem && currentMediaItem.type === 'album') {
-        const rows = modalTracklist.children;
-        for(let i = 0; i < rows.length; i++) {
-            if(i === currentTrackIndex) {
-                // Highlight active track
-                rows[i].className = "flex items-center justify-between p-3 rounded-xl bg-white/10 text-fuchsia-400 transition cursor-pointer";
-            } else {
-                // Dim inactive tracks
-                rows[i].className = "flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-white transition cursor-pointer";
-            }
-        }
+function loadAudioFile(url) {
+    if(url) {
+        // Use the exact URL (Discord URLs have complex parameters that don't need encoding)
+        audioPlayer.src = url;
+        audioPlayer.load();
+        audioPlayer.play().catch(e => console.log("Waiting for user interaction to play audio."));
     }
 }
 
-function openModal(item) { 
-    currentMediaItem = item; 
-    currentTrackIndex = 0; 
-    modalCover.src = item.cover; 
-    modalTitle.textContent = item.title; 
-    modalArtistText.textContent = `${item.artist} • ${item.type}`; 
+window.selectTrack = function(index) {
+    if (!currentMediaItem || currentMediaItem.type !== 'album') return;
     
-    if(item.earlyAccess) modalBadge.classList.remove('hidden'); else modalBadge.classList.add('hidden'); 
-    resetPlayerUI(); 
+    currentTrackIndex = index;
+    const track = currentMediaItem.tracks[index];
     
-    if(item.type === 'single') { 
-        tracklistContainer.classList.add('hidden'); 
-        singleInfo.classList.remove('hidden'); 
-        playerTitle.textContent = item.title; 
-        loadAudioFile(item.audioUrl); 
-    } else { 
-        tracklistContainer.classList.remove('hidden'); 
-        singleInfo.classList.add('hidden'); 
-        modalTracklist.innerHTML = '';
-        item.tracks.forEach((t, i) => {
-            const row = document.createElement('div');
-            row.onclick = () => selectTrack(i);
-            row.innerHTML = `<span class="text-sm font-medium">${t.title}</span><i data-lucide="play" class="w-4 h-4 opacity-50"></i>`;
-            modalTracklist.appendChild(row);
-        });
-        selectTrack(0); 
-    } 
-    document.body.style.overflow = 'hidden'; 
-    modal.classList.remove('opacity-0', 'pointer-events-none'); 
-    lucide.createIcons();
+    // Update Player UI
+    playerTitle.textContent = track.title;
+    playerArtist.textContent = `${currentMediaItem.artist} • ${currentMediaItem.title}`;
+
+    resetPlayerUI();
+    loadAudioFile(track.audioUrl);
+    
+    // Render the list with active highlights
+    tracklistDiv.innerHTML = currentMediaItem.tracks.map((t, idx) => {
+        const isActive = index === idx;
+        const activeClass = isActive ? 'bg-fuchsia-600/20 text-fuchsia-300 ring-1 ring-fuchsia-500/50' : 'bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white';
+        const activeIcon = isActive
+            ? `<div class="flex gap-1 items-end h-4 w-4">
+                <span class="w-1 bg-fuchsia-400 h-2/3 animate-[pulse_0.8s_ease-in-out_infinite]"></span>
+                <span class="w-1 bg-fuchsia-400 h-full animate-[pulse_0.8s_ease-in-out_infinite] animate-delay-100"></span>
+                <span class="w-1 bg-fuchsia-400 h-1/2 animate-[pulse_0.8s_ease-in-out_infinite] animate-delay-200"></span>
+               </div>`
+            : `<img src="${HS_LOGO}" class="w-4 h-4 opacity-50 grayscale rounded-sm">`;
+        return `
+        <button onclick="selectTrack(${idx})" class="w-full flex items-center gap-4 p-3 rounded-xl transition-all ${activeClass}">
+        <span class="w-6 text-sm font-bold opacity-50 text-right">${idx + 1}</span>
+        <span class="flex-grow text-left font-medium">${t.title}</span>
+        ${activeIcon}
+        </button>
+        `;
+    }).join('');
 }
 
-function loadAudioFile(url) { 
-    if (!url) return; 
-    audioPlayer.src = encodeURI(url); 
-    audioPlayer.load(); 
-    audioPlayer.play().catch(err => {
-        console.warn("Autoplay or load blocked: ", err);
-        // Fallback error UI update is handled in error listener, but we also catch play promises here
-    }); 
+function closeModal() {
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'auto';
+    audioPlayer.pause();
+    audioPlayer.removeAttribute('src'); // Fixes the NotSupportedError
+    audioPlayer.load();
 }
 
-window.selectTrack = function(index) { 
-    currentTrackIndex = index; 
-    const track = currentMediaItem.tracks[index]; 
-    playerTitle.textContent = track.title; 
-    resetPlayerUI(); 
-    loadAudioFile(track.audioUrl); 
-    updateTracklistUI(); // Update highlighting so the user *knows* the track changed
-};
-
-function closeModal() { 
-    modal.classList.add('opacity-0', 'pointer-events-none'); 
-    document.body.style.overflow = 'auto'; 
-    audioPlayer.pause(); 
-}
-
-document.getElementById('close-modal').addEventListener('click', closeModal); 
+document.getElementById('close-modal').addEventListener('click', closeModal);
 document.getElementById('modal-backdrop').addEventListener('click', closeModal);
+
+// Initialize all lucide icons for static elements
 lucide.createIcons();
 </script>
 </body>
