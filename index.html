@@ -254,8 +254,8 @@ const ALBUMS = [
         cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931847905743059/Untitled3_20260611205927.jpg?ex=6a42fdaa&is=6a41ac2a&hm=12773dca80e9253fdfd37e93fcff168a4cf50808cee9f4a36d18cc24bdf8b6eb&",
         links: { youtube: "https://www.youtube.com/playlist?list=PLSkMnuxFlus0", ytMusic: "pending", spotify: "pending", apple: "pending", soundcloud: "pending" }, 
         tracks: [
-            { title: "Usin' Me", audioUrl: "music/Usin' Me site.mp3" },
-            { title: "wish i could leave", audioUrl: "music/wish i could leave.mp3" }
+            { title: "Usin' Me", audioUrl: "music/Usin me.mp3" },
+            { title: "wish i could leave", audioUrl: "music/Wish i could leave.mp3" }
         ]
     }
 ];
@@ -265,6 +265,7 @@ const ALBUMS = [
 let currentMediaItem = null;
 let currentTrackIndex = 0;
 let isLooping = false;
+let errorTimeout = null; // Store timeout to clear it if track changes quickly
 const audioPlayer = new Audio();
 
 audioPlayer.addEventListener('timeupdate', () => {
@@ -303,8 +304,11 @@ audioPlayer.addEventListener('pause', () => {
     document.getElementById('pause-icon').classList.add('hidden');
 });
 
-// Fixed Error Listener to solve the "Buggy Names" issue
+// Fixed Error Listener to solve the "Buggy Names" issue entirely
 audioPlayer.addEventListener('error', (e) => { 
+    // Ignore errors caused by clearing src or if src is empty
+    if (!audioPlayer.src || audioPlayer.src === window.location.href || audioPlayer.src.endsWith('null')) return;
+
     console.error("Audio Load Error:", e); 
     resetPlayerState(); 
     
@@ -321,10 +325,13 @@ audioPlayer.addEventListener('error', (e) => {
     titleEl.textContent = "Error: File Not Found"; 
     titleEl.classList.add("text-red-400");
     
-    setTimeout(() => { 
-        // Restore the REAL title, not whatever was in the textContent before
-        titleEl.textContent = actualTitle; 
-        titleEl.classList.remove("text-red-400");
+    clearTimeout(errorTimeout);
+    errorTimeout = setTimeout(() => { 
+        // Only restore the text if it is still showing the error
+        if (titleEl.textContent === "Error: File Not Found") {
+            titleEl.textContent = actualTitle; 
+            titleEl.classList.remove("text-red-400");
+        }
     }, 4000); 
 });
 
@@ -499,6 +506,7 @@ function openModal(item) {
         
         // Setup Player for Single
         playerTitle.textContent = item.title;
+        playerTitle.classList.remove("text-red-400"); // Clear error red if active
         playerArtist.textContent = item.artist;
         
         loadAudioFile(item.audioUrl);
@@ -531,6 +539,7 @@ window.selectTrack = function(index) {
     
     // Update Player UI
     playerTitle.textContent = track.title;
+    playerTitle.classList.remove("text-red-400"); // Clear error red if active
     playerArtist.textContent = `${currentMediaItem.artist} • ${currentMediaItem.title}`;
 
     resetPlayerUI();
@@ -561,13 +570,9 @@ function closeModal() {
     modal.classList.add('opacity-0', 'pointer-events-none');
     document.body.style.overflow = 'auto';
     
-    // Safely stop and clear the audio
+    // Safely stop the audio without triggering the error listener
     audioPlayer.pause();
-    
-    // Instead of setting src to an empty string which can throw errors,
-    // we simply clear the src and call load() to reset the internal state
-    audioPlayer.src = "";
-    audioPlayer.load(); 
+    audioPlayer.currentTime = 0;
     
     resetPlayerState();
 }
