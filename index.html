@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Procat / HS Music</title>
+<title>HS Music</title>
 <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -73,6 +73,7 @@ body { background-color: #09090b; color: white; font-family: ui-sans-serif, syst
 <p id="modal-artist" class="text-zinc-400 font-medium tracking-wide mb-2 flex items-center justify-center gap-2"><img src="https://cdn.discordapp.com/attachments/1284984646043439135/1520945939995558029/Untitled84_1.png?ex=6a430ac9&is=6a41b949&hm=4fb74a44cec793245037444d71fa2e4558cf44f0d6192f757187eb870c337afb&" class="w-4 h-4 rounded-sm" alt="HS Logo"> <span id="modal-artist-text">Procat</span></p>
 <div id="modal-platforms" class="flex flex-wrap items-center justify-center gap-4 mt-6 p-4 bg-white/5 rounded-2xl border border-white/10 hidden"></div>
 </div>
+
 <div class="w-full md:w-3/5 flex flex-col bg-black/60 relative overflow-hidden">
 <div class="w-full p-6 md:p-8 bg-zinc-900/90 border-b border-white/5 flex flex-col gap-4 shadow-2xl shrink-0 z-20">
 <div class="text-center mb-1"><h3 id="player-title" class="text-lg md:text-xl font-bold text-white tracking-tight truncate">Track Title</h3><p id="player-artist" class="text-xs md:text-sm text-fuchsia-400 font-medium">Procat</p></div>
@@ -110,61 +111,199 @@ const modalTracklist = document.getElementById('modal-tracklist');
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// FIXED: Adjusted audioUrl filenames to perfectly match user-provided names (Case and Extensions)
 const SINGLES = [
 { id: "loose-goose", title: "Loose Goose", artist: "Procat", type: "single", cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931509836714055/Untitled51_1.png?ex=6a42fd59&is=6a41abd9&hm=1f23100f50e2dbd130054b233f8c2ac421fe591f13782bbad6b78526ad45f7ec&", audioUrl: "music/Loose Goose site edition.mp3" },
 { id: "its-deja-vu", title: "Its Deja Vu", artist: "Procat", type: "single", cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931509245182183/itsdejavu.jpg?ex=6a42fd59&is=6a41abd9&hm=fdb03837ef9f3a62298d95463b2b6ca2d71b779f48e07c47dd8942166e2b8104&", audioUrl: "music/Its Deja Vu site edition.mp3" },
-{ id: "flakes-endless-purgatory", title: "Flakes EndLess Purgatory", artist: "Procat", type: "single", cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510948204744/Untitled95.png?ex=6a42fd59&is=6a41abd9&hm=4f863f048199f3c35955cfd356bf950ef8be8ccdb237f4aba28bfadbbc7fbfcd&", audioUrl: "music/Flakes EndLess Purgatory site edition.mp3" }
+{ id: "flakes-endless-purgatory", title: "Flakes Endless Purgatory", artist: "Procat", type: "single", cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510948204744/Untitled95.png?ex=6a42fd59&is=6a41abd9&hm=4f863f048199f3c35955cfd356bf950ef8be8ccdb237f4aba28bfadbbc7fbfcd&", audioUrl: "music/Flakes Endless Purgatory site edition.mp3" } // Changed 'EndLess' to 'Endless'
 ];
 
+// FIXED: "Flakes peom" changed extension to .m4a and corrected typo "peom"
 const ALBUMS = [
-{ id: "broken-tapes", title: "Broken Tapes", artist: "Procat", type: "album", earlyAccess: true, cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510125985792/Untitled97.png?ex=6a42fd59&is=6a41abd9&hm=775267e46e8198b1d8df986be48e94c161c61bfc665234a8058f173ac63d48ce&", tracks: [ { title: "Flakes Poem", audioUrl: "music/Flakes Poem site edition.mp3" }, { title: "till dawn", audioUrl: "music/till dawn site edition.mp3" }, { title: "broken tapes", audioUrl: "music/broken tapes site edition.mp3" } ] },
-{ id: "aware", title: "A.W.A.R.E", artist: "Procat", type: "album", earlyAccess: true, cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931847905743059/Untitled3_20260611205927.jpg?ex=6a42fdaa&is=6a41ac2a&hm=12773dca80e9253fdfd37e93fcff168a4cf50808cee9f4a36d18cc24bdf8b6eb&", tracks: [ { title: "Usin' Me", audioUrl: "music/Usin' Me site edition.mp3" }, { title: "wish i could leave", audioUrl: "music/wish i could leave site edition.mp3" } ] }
+{ id: "broken-tapes", title: "Broken Tapes", artist: "Procat", type: "album", earlyAccess: true, cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931510125985792/Untitled97.png?ex=6a42fd59&is=6a41abd9&hm=775267e46e8198b1d8df986be48e94c161c61bfc665234a8058f173ac63d48ce&", 
+  tracks: [ 
+    { title: "Flakes Poem", audioUrl: "music/Flakes peom site edition.m4a" }, // Fixed '.mp3' to '.m4a', 'Poem' to 'peom'
+    { title: "till dawn", audioUrl: "music/till dawn site edition.mp3" }, 
+    { title: "broken tapes", audioUrl: "music/broken tapes site edition.mp3" } 
+  ] 
+},
+{ id: "aware", title: "A.W.A.R.E", artist: "Procat", type: "album", earlyAccess: true, cover: "https://cdn.discordapp.com/attachments/1284984646043439135/1520931847905743059/Untitled3_20260611205927.jpg?ex=6a42fdaa&is=6a41ac2a&hm=12773dca80e9253fdfd37e93fcff168a4cf50808cee9f4a36d18cc24bdf8b6eb&", 
+  tracks: [ 
+    { title: "Usin' Me", audioUrl: "music/Usin' Me site edition.mp3" }, 
+    { title: "wish i could leave", audioUrl: "music/wish i could leave site edition.mp3" } 
+  ] 
+}
 ];
 
 let currentMediaItem = null, currentTrackIndex = 0, isLooping = false;
 const audioPlayer = new Audio();
-audioPlayer.addEventListener('timeupdate', () => { const cur = audioPlayer.currentTime, dur = audioPlayer.duration; if(dur > 0) { document.getElementById('progress-bar').style.width = (cur/dur)*100 + '%'; document.getElementById('current-time').textContent = formatTime(cur); document.getElementById('total-time').textContent = formatTime(dur); } });
-audioPlayer.addEventListener('ended', () => { if(isLooping) { audioPlayer.currentTime=0; audioPlayer.play(); } else if(currentMediaItem?.type === 'album' && currentTrackIndex < currentMediaItem.tracks.length - 1) selectTrack(currentTrackIndex + 1); else resetPlayerState(); });
-audioPlayer.addEventListener('play', () => { document.getElementById('play-icon').classList.add('hidden'); document.getElementById('pause-icon').classList.remove('hidden'); });
-audioPlayer.addEventListener('pause', () => { document.getElementById('play-icon').classList.remove('hidden'); document.getElementById('pause-icon').classList.add('hidden'); });
-audioPlayer.addEventListener('error', (e) => { console.error("Audio Load Error:", e); resetPlayerState(); const titleEl = document.getElementById('player-title'); const old = titleEl.textContent; titleEl.textContent = "Error: Cannot load track"; setTimeout(() => { titleEl.textContent = old; }, 4000); });
 
-function resetPlayerState() { document.getElementById('play-icon').classList.remove('hidden'); document.getElementById('pause-icon').classList.add('hidden'); }
-function resetPlayerUI() { document.getElementById('progress-bar').style.width = '0%'; document.getElementById('current-time').textContent = '0:00'; document.getElementById('total-time').textContent = '0:00'; }
-function formatTime(s) { if(isNaN(s)) return "0:00"; const m = Math.floor(s/60), sec = Math.floor(s%60); return `${m}:${sec<10?'0':''}${sec}`; }
+audioPlayer.addEventListener('timeupdate', () => { 
+    const cur = audioPlayer.currentTime, dur = audioPlayer.duration; 
+    if(dur > 0) { 
+        document.getElementById('progress-bar').style.width = (cur/dur)*100 + '%'; 
+        document.getElementById('current-time').textContent = formatTime(cur); 
+        document.getElementById('total-time').textContent = formatTime(dur); 
+    } 
+});
 
-document.getElementById('play-pause-btn').addEventListener('click', () => { if(audioPlayer.src) audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause(); });
-document.getElementById('rewind-btn').addEventListener('click', () => { if(audioPlayer.src) { audioPlayer.currentTime=0; if(audioPlayer.paused) audioPlayer.play(); } });
-document.getElementById('loop-btn').addEventListener('click', function() { isLooping=!isLooping; this.classList.toggle('text-fuchsia-400'); this.classList.toggle('text-zinc-400'); });
-document.getElementById('progress-container').addEventListener('click', function(e) { if(audioPlayer.duration) audioPlayer.currentTime = ((e.clientX - this.getBoundingClientRect().left)/this.offsetWidth) * audioPlayer.duration; });
+audioPlayer.addEventListener('ended', () => { 
+    if(isLooping) { 
+        audioPlayer.currentTime=0; 
+        audioPlayer.play(); 
+    } else if(currentMediaItem?.type === 'album' && currentTrackIndex < currentMediaItem.tracks.length - 1) {
+        selectTrack(currentTrackIndex + 1); 
+    } else {
+        resetPlayerState(); 
+    }
+});
 
-SINGLES.forEach(s => { const el = document.createElement('div'); el.className = "group relative bg-white/5 border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:bg-white/10 transition-all"; el.onclick = () => openModal(s); el.innerHTML = `<div class="aspect-square relative"><img src="${s.cover}" class="w-full h-full object-cover"></div><div class="p-4"><h3 class="font-bold text-white">${s.title}</h3><p class="text-sm text-zinc-400">Single</p></div>`; document.getElementById('singles-grid').appendChild(el); });
-ALBUMS.forEach(a => { const el = document.createElement('div'); el.className = "group relative bg-white/5 border border-white/5 rounded-3xl p-4 cursor-pointer hover:bg-white/10 transition-all"; el.onclick = () => openModal(a); el.innerHTML = `<div class="aspect-square rounded-2xl overflow-hidden mb-4"><img src="${a.cover}" class="w-full h-full object-cover"></div><div class="px-2"><h3 class="font-bold text-xl">${a.title}</h3><p class="text-sm text-zinc-400">${a.tracks.length} Tracks</p></div>`; document.getElementById('albums-grid').appendChild(el); });
+audioPlayer.addEventListener('play', () => { 
+    document.getElementById('play-icon').classList.add('hidden'); 
+    document.getElementById('pause-icon').classList.remove('hidden'); 
+});
+
+audioPlayer.addEventListener('pause', () => { 
+    document.getElementById('play-icon').classList.remove('hidden'); 
+    document.getElementById('pause-icon').classList.add('hidden'); 
+});
+
+audioPlayer.addEventListener('error', (e) => { 
+    console.error("Audio Load Error:", e); 
+    resetPlayerState(); 
+    const titleEl = document.getElementById('player-title'); 
+    const old = titleEl.textContent; 
+    // ADDED: Better visual error indicator for missing files
+    titleEl.textContent = "Error: File Not Found"; 
+    titleEl.classList.add("text-red-400");
+    setTimeout(() => { 
+        titleEl.textContent = old; 
+        titleEl.classList.remove("text-red-400");
+    }, 4000); 
+});
+
+function resetPlayerState() { 
+    document.getElementById('play-icon').classList.remove('hidden'); 
+    document.getElementById('pause-icon').classList.add('hidden'); 
+}
+
+function resetPlayerUI() { 
+    document.getElementById('progress-bar').style.width = '0%'; 
+    document.getElementById('current-time').textContent = '0:00'; 
+    document.getElementById('total-time').textContent = '0:00'; 
+}
+
+function formatTime(s) { 
+    if(isNaN(s)) return "0:00"; 
+    const m = Math.floor(s/60), sec = Math.floor(s%60); 
+    return `${m}:${sec<10?'0':''}${sec}`; 
+}
+
+document.getElementById('play-pause-btn').addEventListener('click', () => { 
+    if(audioPlayer.src) audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause(); 
+});
+document.getElementById('rewind-btn').addEventListener('click', () => { 
+    if(audioPlayer.src) { audioPlayer.currentTime=0; if(audioPlayer.paused) audioPlayer.play(); } 
+});
+document.getElementById('loop-btn').addEventListener('click', function() { 
+    isLooping=!isLooping; 
+    this.classList.toggle('text-fuchsia-400'); 
+    this.classList.toggle('text-zinc-400'); 
+});
+document.getElementById('progress-container').addEventListener('click', function(e) { 
+    if(audioPlayer.duration) audioPlayer.currentTime = ((e.clientX - this.getBoundingClientRect().left)/this.offsetWidth) * audioPlayer.duration; 
+});
+
+SINGLES.forEach(s => { 
+    const el = document.createElement('div'); 
+    el.className = "group relative bg-white/5 border border-white/5 rounded-2xl overflow-hidden cursor-pointer hover:bg-white/10 transition-all"; 
+    el.onclick = () => openModal(s); 
+    el.innerHTML = `<div class="aspect-square relative"><img src="${s.cover}" class="w-full h-full object-cover"></div><div class="p-4"><h3 class="font-bold text-white">${s.title}</h3><p class="text-sm text-zinc-400">Single</p></div>`; 
+    document.getElementById('singles-grid').appendChild(el); 
+});
+
+ALBUMS.forEach(a => { 
+    const el = document.createElement('div'); 
+    el.className = "group relative bg-white/5 border border-white/5 rounded-3xl p-4 cursor-pointer hover:bg-white/10 transition-all"; 
+    el.onclick = () => openModal(a); 
+    el.innerHTML = `<div class="aspect-square rounded-2xl overflow-hidden mb-4"><img src="${a.cover}" class="w-full h-full object-cover"></div><div class="px-2"><h3 class="font-bold text-xl">${a.title}</h3><p class="text-sm text-zinc-400">${a.tracks.length} Tracks</p></div>`; 
+    document.getElementById('albums-grid').appendChild(el); 
+});
+
+function updateTracklistUI() {
+    if(currentMediaItem && currentMediaItem.type === 'album') {
+        const rows = modalTracklist.children;
+        for(let i = 0; i < rows.length; i++) {
+            if(i === currentTrackIndex) {
+                // Highlight active track
+                rows[i].className = "flex items-center justify-between p-3 rounded-xl bg-white/10 text-fuchsia-400 transition cursor-pointer";
+            } else {
+                // Dim inactive tracks
+                rows[i].className = "flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-white transition cursor-pointer";
+            }
+        }
+    }
+}
 
 function openModal(item) { 
-    currentMediaItem = item; currentTrackIndex = 0; modalCover.src = item.cover; modalTitle.textContent = item.title; modalArtistText.textContent = `${item.artist} • ${item.type}`; 
+    currentMediaItem = item; 
+    currentTrackIndex = 0; 
+    modalCover.src = item.cover; 
+    modalTitle.textContent = item.title; 
+    modalArtistText.textContent = `${item.artist} • ${item.type}`; 
+    
     if(item.earlyAccess) modalBadge.classList.remove('hidden'); else modalBadge.classList.add('hidden'); 
     resetPlayerUI(); 
+    
     if(item.type === 'single') { 
-        tracklistContainer.classList.add('hidden'); singleInfo.classList.remove('hidden'); playerTitle.textContent = item.title; loadAudioFile(item.audioUrl); 
+        tracklistContainer.classList.add('hidden'); 
+        singleInfo.classList.remove('hidden'); 
+        playerTitle.textContent = item.title; 
+        loadAudioFile(item.audioUrl); 
     } else { 
-        tracklistContainer.classList.remove('hidden'); singleInfo.classList.add('hidden'); 
+        tracklistContainer.classList.remove('hidden'); 
+        singleInfo.classList.add('hidden'); 
         modalTracklist.innerHTML = '';
         item.tracks.forEach((t, i) => {
             const row = document.createElement('div');
-            row.className = "flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition cursor-pointer";
             row.onclick = () => selectTrack(i);
             row.innerHTML = `<span class="text-sm font-medium">${t.title}</span><i data-lucide="play" class="w-4 h-4 opacity-50"></i>`;
             modalTracklist.appendChild(row);
         });
         selectTrack(0); 
     } 
-    document.body.style.overflow = 'hidden'; modal.classList.remove('opacity-0', 'pointer-events-none'); lucide.createIcons();
+    document.body.style.overflow = 'hidden'; 
+    modal.classList.remove('opacity-0', 'pointer-events-none'); 
+    lucide.createIcons();
 }
-function loadAudioFile(url) { if (!url) return; audioPlayer.src = encodeURI(url); audioPlayer.load(); audioPlayer.play().catch(err => console.warn(err)); }
-window.selectTrack = function(index) { currentTrackIndex = index; const track = currentMediaItem.tracks[index]; playerTitle.textContent = track.title; resetPlayerUI(); loadAudioFile(track.audioUrl); };
-function closeModal() { modal.classList.add('opacity-0', 'pointer-events-none'); document.body.style.overflow = 'auto'; audioPlayer.pause(); }
-document.getElementById('close-modal').addEventListener('click', closeModal); document.getElementById('modal-backdrop').addEventListener('click', closeModal);
+
+function loadAudioFile(url) { 
+    if (!url) return; 
+    audioPlayer.src = encodeURI(url); 
+    audioPlayer.load(); 
+    audioPlayer.play().catch(err => {
+        console.warn("Autoplay or load blocked: ", err);
+        // Fallback error UI update is handled in error listener, but we also catch play promises here
+    }); 
+}
+
+window.selectTrack = function(index) { 
+    currentTrackIndex = index; 
+    const track = currentMediaItem.tracks[index]; 
+    playerTitle.textContent = track.title; 
+    resetPlayerUI(); 
+    loadAudioFile(track.audioUrl); 
+    updateTracklistUI(); // Update highlighting so the user *knows* the track changed
+};
+
+function closeModal() { 
+    modal.classList.add('opacity-0', 'pointer-events-none'); 
+    document.body.style.overflow = 'auto'; 
+    audioPlayer.pause(); 
+}
+
+document.getElementById('close-modal').addEventListener('click', closeModal); 
+document.getElementById('modal-backdrop').addEventListener('click', closeModal);
 lucide.createIcons();
 </script>
 </body>
